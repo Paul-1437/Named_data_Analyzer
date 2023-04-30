@@ -187,6 +187,7 @@ int main(int argc, const char * argv[]) {
     printf("Q1: %.2f\n", q1);
     printf("Median: %.2f\n", median);
     printf("Q3: %.2f\n", q3);
+    printf("IQR: %.2f\n", q3-q1);
     printf("Max: %.2f\n", end);
     printf("Total value: %.2f\n", total);
     return 0;
