@@ -21,7 +21,7 @@ bool compare(info a, info b){
     else
         return 0;
 }
-double even_median(int start, int end, string l, string u){
+double even_median(int start, int end, string l, string u, string m){
 //偶数个数值，求中间值
     int q=end-start+1;
     double med=0;
@@ -32,29 +32,33 @@ double even_median(int start, int end, string l, string u){
     }
     int i=1;
     for (; i<=q/2; i++){
-        n->tag=l;
         if (i==q/2) {
             med+=n->value;
-            n->tag+="med";
+                n->tag=m;
             n++;
             continue;
+        }
+        if (n->tag!="Median"){
+            n->tag=l;
         }
         n++;
     }
     for (; i<=q; i++){
-        n->tag=u;
         if (i==(q/2)+1) {
             med+=n->value;
-            n->tag+="med";
+            n->tag=m;
             n++;
             continue;
+        }
+        if (n->tag!="Median"){
+            n->tag=u;
         }
         n++;
     }
     med/=2;
     return med;
 }
-double odd_median(int start, int end, string l, string u){
+double odd_median(int start, int end, string l, string u, string m){
 //奇数个数值，求中间值
     int q=end-start+1;
     double med=0;
@@ -65,11 +69,12 @@ double odd_median(int start, int end, string l, string u){
     }
     int i=1;
     for (; i<=(q/2)+1; i++){
-        n->tag=l;
+        if (n->tag!="Median"){
+            n->tag=l;
+        }
         if (i==(q/2)+1) {
-            n->tag=u;
             med=n->value;
-            n->tag+="med";
+            n->tag=m;
             n++;
             continue;
         }
@@ -107,30 +112,30 @@ int main(int argc, const char * argv[]) {
     double median,q1,q3;
     //when the quantity of the data is even
     if (quantity%2==0) {
-        median=even_median(1, quantity,"", "");
+        median=even_median(1, quantity,"", "","Median");
         //when lower half and upper half are even
         if (quantity%4==0){
-            q1=even_median(1, quantity/2,"q1","q2");
-            q3=even_median((quantity/2)+1, quantity,"q3","q4");
+            q1=even_median(1, quantity/2,"low25%","low_mid","Q1");
+            q3=even_median((quantity/2)+1, quantity,"up_mid","up25%","Q3");
         }
         //when lower half and upper half are odd
         else{
-            q1=odd_median(1, quantity/2,"q1","q2");
-            q3=odd_median((quantity/2)+1, quantity,"q3","q4");
+            q1=odd_median(1, quantity/2,"low25%","low_mid","Q1");
+            q3=odd_median((quantity/2)+1, quantity,"up_mid","up25%","Q3");
         }
     }
     //when the quantity of the data is odd
     else{
-        median=odd_median(1, quantity, "", "");
+        median=odd_median(1, quantity, "", "","Median");
         //when lower half and upper half are even
         if ((quantity-1)%4==0){
-            q1=even_median(1, quantity/2,"q1","q2");
-            q3=even_median((quantity/2)+1, quantity,"q3","q4");
+            q1=even_median(1, quantity/2,"low25%","low_mid","Q1");
+            q3=even_median((quantity/2)+1, quantity,"up_mid","up25%","Q3");
         }
         //when lower half and upper half are odd
         else{
-            q1=odd_median(1, quantity/2,"q1","q2");
-            q3=odd_median((quantity/2)+1, quantity,"q3","q4");
+            q1=odd_median(1, quantity/2,"low25%","low_mid","Q1");
+            q3=odd_median((quantity/2)+1, quantity,"up_mid","up25%","Q3");
         }
     }
     double end=0;
@@ -140,11 +145,13 @@ int main(int argc, const char * argv[]) {
         end=n->value;
         n++;
     }
+    printf("\nOverall\nQuantity(n): %d\n", quantity);
     printf("Mean: %.2f\n", mean);
     printf("Min: %.2f\n", nums.begin()->value);
     printf("Q1: %.2f\n", q1);
     printf("Median: %.2f\n", median);
     printf("Q3: %.2f\n", q3);
     printf("Max: %.2f\n", end);
+    printf("Total: %.2f\n", total);
     return 0;
 }
