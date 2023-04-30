@@ -177,7 +177,7 @@ int main(int argc, const char * argv[]) {
             freq_count=s->second;
             high_freq=s->first;
         }
-        if (s->second==freq_count) {
+        if (high_freq!=s->first&&s->second==freq_count) {
             freq_amount++;
             high_freq+=", ";
             high_freq+=s->first;
