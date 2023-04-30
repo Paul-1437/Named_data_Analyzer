@@ -168,21 +168,29 @@ int main(int argc, const char * argv[]) {
         m++;
     }
     string high_freq="^";
-    int freq_count=0;
+    int freq_count=0,freq_amount=0;
     map<string, int> ::iterator s=freqent_category.begin();
     while (s!=freqent_category.end()) {
     //遍历找出最频繁种类 traversal to find the most frequent category
         if (s->second>freq_count) {
+            freq_amount=1;
             freq_count=s->second;
             high_freq=s->first;
+        }
+        if (s->second==freq_count) {
+            freq_amount++;
+            high_freq+=", ";
+            high_freq+=s->first;
         }
         s++;
     }
     //output
     printf("\nOverall\nQuantity(n): %d\n", quantity);
-    cout<<"Most frequent value: "<<high_freq<<endl;
+    if (freq_amount<=3) {
+        cout<<"Most frequent value: "<<high_freq<<" "<<freq_count<<"times"<<endl;
+    }
     printf("Mean: %.2f\n", mean);
-    printf("Mode: %.2f\n", mode);
+    printf("Mode: %.2f, %d times\n", mode,mode_count);
     printf("Min: %.2f\n", nums.begin()->value);
     printf("Q1: %.2f\n", q1);
     printf("Median: %.2f\n", median);
