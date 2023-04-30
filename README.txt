@@ -3,7 +3,7 @@ This is a program that analyzes data with name or tags. It helps you find out
 -The amount of data
 -The middle of the data (mean, median and mode)
 -The spread of the data (minimum, Q1, median, Q3,  maximum and interquartile range*)
--The most frequent category(or categories, when there are less than three)
+-The most frequent category(or categories, when there are less than 10)
 
 The feature of this program
 -No need to input the amount of data
@@ -14,7 +14,7 @@ The feature of this program
 -数据量
 -平均值，众数和中数
 -数据分布（最小值，25%低数值，中值，25%高数值，最高值）
--最多出现的类别（当在3个以内时）
+-最多出现的类别（当在10个以内时）
 
 程序特色：
 -用户无需输入数据量，简化用户工作流程
