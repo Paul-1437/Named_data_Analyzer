@@ -186,11 +186,21 @@ int main(int argc, const char * argv[]) {
     }
     //output
     printf("\nOverall\nQuantity(n): %d\n", quantity);
-    if (freq_amount<=3) {
+    if (freq_amount<=10) {
         cout<<"Most frequent value: "<<high_freq<<" "<<freq_count<<"times"<<endl;
     }
     printf("Mean: %.2f\n", mean);
-    printf("Mode: %.2f, %d times\n", mode,mode_count);
+    m=mode_v.begin();
+    cout<<"mode: ";
+    while (m!=mode_v.end()) {
+    //遍历找出其他众数 traversal to find other mode numbers (if possible)
+        if (mode!=m->first&&m->second==mode_count) {
+            cout<<mode<<" ,";
+            mode=m->first;
+        }
+        m++;
+    }
+    cout<<mode<<" ;"<<mode_count<<" times"<<endl;
     printf("Min: %.2f\n", nums.begin()->value);
     printf("Q1: %.2f\n", q1);
     printf("Median: %.2f\n", median);
