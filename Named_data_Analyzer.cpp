@@ -95,7 +95,7 @@ int main(int argc, const char * argv[]) {
     double total=0;
     map<double, int> mode_v;
     map<string, int> freqent_category;
-    cout<<"input follows (name,value) pattern, ends up with character ^"<<endl;
+    cout<<"input follows (name value) pattern, ends up with character ^"<<endl;
     while (1) {
     //输入并打包进可变数组 input to vector
         info temp;
@@ -187,7 +187,7 @@ int main(int argc, const char * argv[]) {
     //output
     printf("\nOverall\nQuantity(n): %d\n", quantity);
     if (freq_amount<=10) {
-        cout<<"Most frequent value: "<<high_freq<<" "<<freq_count<<"times"<<endl;
+        cout<<"Most frequent value: "<<high_freq<<" ;"<<freq_count<<" times"<<endl;
     }
     printf("Mean: %.2f\n", mean);
     m=mode_v.begin();
